@@ -5,7 +5,7 @@ This repo contains two small explorations of using Firecracker microVMs for buil
 Initially, I had set out to create a readonly file system to be shared amongst untrusted users. Each user would then have an allocated partition to do whatever work they require.
 The idea was to reduce the amount of data to copy when executing multiple VMs at once - it would only be necessary to allocate this extra disk rather than the entire root filesystem. Unfortunately it wasn't trivial to make `yarn` properly work under a readonly root file system.
 
-The `read-write` exploration created a full root filesystem that would have to be copies (or recreated) for each user - but it worked.
+The `read-write` exploration created a full root filesystem that would have to be copied (or recreated) for each user - but it worked.
 
 ## Prerequisites
 
