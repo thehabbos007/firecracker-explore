@@ -1,7 +1,7 @@
-all: root extract image space
+all: root extract image
 
 root:
-	docker build -f readonly.dockerfile -t agent-b .
+	docker build -f read-write.dockerfile -t agent-b .
 
 extract:
 	docker rm -f extract || :
@@ -24,8 +24,3 @@ image:
 	sudo rm -r $$TMP ;\
 	sudo chmod 777 ./rootfs.img
 
-space: 
-	set -e
-	rm -rf space.ext4 || : ;\
-	dd if=/dev/zero of=space.ext4 bs=1M count=1536 ;\
-	sudo mkfs.ext4 -E root_owner=1000:1000 -U 116154ec-9b15-4341-a8a8-fffef734ac4d ./space.ext4  ;\
