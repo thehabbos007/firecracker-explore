@@ -37,7 +37,7 @@ This starts a `sh` session in the writeable mounted partition `/home/node` in wh
 
 ```bash
 $ pwd
-../readonly
+../read-write
 $ ./run.sh https://gitpkg.now.sh/hashintel/hash/packages/blocks/callout\?main
 ```
 
