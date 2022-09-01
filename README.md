@@ -45,3 +45,9 @@ This builds a type script package at https://github.com/hashintel/hash/tree/main
 
 If at any point you get an error in the shape of `Error creating the HTTP server: IO error: Address already in use (os error 98)`
 simply delete the firecracker socket: `rm -f /tmp/firecracker.socket`.
+
+## General setup
+
+The VMs both mount a `rootfs` built by docker. Using the provided `init-agent` built into the docker images, the VM will use a custom init program to set up its initial state. This program is just meant to provide the bare minimum to facilitate a linux environment (it's not very tested/thought through). I've made use of command line tools directly from the init program when it comes to the build stages of the `read-write` exploration, as it was easier than orchestrating builds with bindings or in a custom program.
+
+The idea is that an orchestrator can kick off these VMs in a centralized fasion. Ideally the VMs would share some root filesystem, and have their own disk to do whatever (this is what `readonly` does). To facilitate communication back and forth with the VMs, `MMDS` is used, which sort of acts like a key/value store. Down the line the VMs could send payloads back to the orchestrator.
